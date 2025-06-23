@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                    // Which JS version to compile to
+    "module": "commonjs",                  // Module system for Node.js
+    "lib": ["ES2020"],                     // Available JS features
+    "outDir": "./dist",                    // Where compiled JS goes
+    "rootDir": "./",                       // Where source files are
+    "strict": true,                        // Enable all strict checks
+    "esModuleInterop": true,              // Better imports compatibility
+    "skipLibCheck": true,                  // Skip checking .d.ts files
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,             // Import JSON files
+    "types": ["node"]                      // Include Node.js types
+  },
+  "include": ["src/**/*", "scripts/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
