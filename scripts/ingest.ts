@@ -56,12 +56,20 @@ async function fetchSongMetadata(songId: string): Promise<SongMetadata | null> {
         }
 
         // Parse JSON response
-        const metadata = await response.json();
+        const data = await response.json();
 
-        // Store in cache for future use
-        songCache.set(songId, metadata);
+        // Validate and cast to SongMetadata
+        if (data && typeof data === 'object' && 'songId' in data) {
+            const metadata = data as SongMetadata;
 
-        return metadata;
+            // Store in cache for future use
+            songCache.set(songId, metadata);
+
+            return metadata;
+        } else {
+            console.error(`Invalid metadata format for song ${songId}`);
+            return null;
+        }
     } catch (error) {
         // Network or parsing error
         console.error(`Failed to fetch metadata for song ${songId}:`, error);

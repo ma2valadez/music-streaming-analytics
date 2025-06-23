@@ -1,0 +1,47 @@
+[
+  {
+    "userId": "724e10de-23b3-4b79-a3ba-70c8787fa3fe",
+    "songId": "c059de31-9f88-4fee-8251-acf690752e5f",
+    "timestamp": "2025-03-15T10:30:00Z",
+    "durationMs": 240000,
+    "title": "Take Five",
+    "artist": "Dave Brubeck Quartet",
+    "releaseDate": "1959-09-29"
+  },
+  {
+    "userId": "724e10de-23b3-4b79-a3ba-70c8787fa3fe",
+    "songId": "882cfe14-8f95-44c8-8ae1-b99ba80d9894",
+    "timestamp": "2025-03-20T14:45:00Z",
+    "durationMs": 180000,
+    "title": "So What",
+    "artist": "Miles Davis",
+    "releaseDate": "1959-08-17"
+  },
+  {
+    "userId": "724e10de-23b3-4b79-a3ba-70c8787fa3fe",
+    "songId": "52e960a6-1306-4701-a800-a5fa1a7a6762",
+    "timestamp": "2025-04-01T09:15:00Z",
+    "durationMs": 5000,
+    "title": "My Favorite Things",
+    "artist": "John Coltrane",
+    "releaseDate": "1961-03-07"
+  },
+  {
+    "userId": "3de0d8d3-5422-4fe1-a6c6-4aa5046bab3f",
+    "songId": "c059de31-9f88-4fee-8251-acf690752e5f",
+    "timestamp": "2025-04-02T11:20:00Z",
+    "durationMs": 15000,
+    "title": "Take Five",
+    "artist": "Dave Brubeck Quartet",
+    "releaseDate": "1959-09-29"
+  },
+  {
+    "userId": "3de0d8d3-5422-4fe1-a6c6-4aa5046bab3f",
+    "songId": "882cfe14-8f95-44c8-8ae1-b99ba80d9894",
+    "timestamp": "2025-04-03T16:30:00Z",
+    "durationMs": 8000,
+    "title": "So What",
+    "artist": "Miles Davis",
+    "releaseDate": "1959-08-17"
+  }
+]
