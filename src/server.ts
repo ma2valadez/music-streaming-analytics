@@ -1,16 +1,23 @@
 // Import required modules
-import express from "express";        // Web framework for Node.js
-import * as fs from "fs";           // File system module to read files
-import * as path from "path";       // Path module to work with file paths
+import express, { Request, Response, Application } from "express";
+import * as fs from "fs";
+import * as path from "path";
 
 console.log("Starting application");
 
 // Create Express application instance
-const app = express();
+const app: Application = express();
+
+// Interface for song data
+interface Song {
+    songId: string;
+    title: string;
+    artist: string;
+    releaseDate: string;
+}
 
 // Function to load songs data from JSON file
-// Arrow function with return type annotation
-const loadSongsData = (): { songs: any[] } => {
+const loadSongsData = (): { songs: Song[] } => {
     try {
         // __dirname is the directory of current file (src/)
         // We go up one level (..) then into static/data/songs.json
@@ -28,17 +35,25 @@ const loadSongsData = (): { songs: any[] } => {
     }
 };
 
+// Define GET endpoint for root path
+app.get("/", (req: Request, res: Response): void => {
+    res.send({
+        message: "Music Streaming Analytics API",
+        endpoints: {
+            health: "GET /test",
+            song: "GET /songs/:songId"
+        }
+    });
+});
+
 // Define GET endpoint for health check
-// async keyword allows use of await (though not used here)
-// req = request object, res = response object
-app.get("/test", async (req, res) => {
-    // Send JSON response
+app.get("/test", (req: Request, res: Response): void => {
     res.send({ message: "Hello World!" });
 });
 
 // Define GET endpoint with URL parameter
-// :songId is a route parameter - captures value from URL
-app.get("/songs/:songId", async (req, res) => {
+// Using a simpler approach that TypeScript handles better
+app.get("/songs/:songId", (req: Request, res: Response): void => {
     try {
         // Extract songId from URL parameters
         const songId = req.params.songId;
@@ -47,12 +62,12 @@ app.get("/songs/:songId", async (req, res) => {
         const songsData = loadSongsData();
 
         // Find song with matching ID
-        // Array.find returns first element where condition is true
         const song = songsData.songs.find((song) => song.songId === songId);
 
         // If no song found, return 404 error
         if (!song) {
-            return res.status(404).json({ error: "Song not found" });
+            res.status(404).json({ error: "Song not found" });
+            return;
         }
 
         // Return the found song as JSON
@@ -74,12 +89,12 @@ const server = app.listen(port, () => {
 });
 
 // Graceful shutdown function
-const shutdown = async () => {
+const shutdown = async (): Promise<void> => {
     server.close();
 };
 
 // Handle termination signal (Ctrl+C)
-process.once("SIGTERM", async function () {
+process.once("SIGTERM", async () => {
     console.log("Stopping application");
     await shutdown();
     process.exit();
